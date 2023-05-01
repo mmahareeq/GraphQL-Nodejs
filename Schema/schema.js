@@ -2,6 +2,10 @@ const graphql = require('graphql');
 
 const {GraphQLObjectType, GraphQLString} = graphql;
 
+const dummyDate = [{id: "1", name: 'ahmad', gener: ''},
+    {id: "2", name: 'mohammad', gener: ''},
+    {id: "3", name: 'ail', gener: ''}
+]
 const BookType= new GraphQLObjectType({
     name:'Book',
     fields: ()=>({
@@ -17,7 +21,9 @@ const RootQuery = new GraphQLObjectType({
         book: {
             type: BookType,
             args: {id: {type: GraphQLString}},
-            resolve(parent, args){}
+            resolve(parent, args){
+                return dummyDate.find((item)=> item.id === args.id);
+            }
         }
     }
 })
